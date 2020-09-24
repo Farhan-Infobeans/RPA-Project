@@ -1,0 +1,10 @@
+<html>
+<body>
+<p>Hi {0},</p>
+<p>This is a reminder to send anniversary note to your team member.</p>
+<p>{1}</p>
+<p>{2}<p/>
+<p>Please don't forget to copy me and Kannan on this anniversary note.</p>
+<p><font color=red>Note: This is an automated email. If you should not receive this, please let me know.</font></p>
+</body>
+</html>

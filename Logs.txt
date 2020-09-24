@@ -1,0 +1,35 @@
+﻿Execution started at: 09/11/2020 12:04:58
+Reading data from config file
+Team Member  Ankit Mehta Date of Joining  01/September/2015 Anniversary Date  01/September/2020
+Team Member  Nilanshu Ramteke Date of Joining  01/September/2015 Anniversary Date  01/September/2020
+Team Member  Rahul Shrivastava Date of Joining  01/September/2017 Anniversary Date  01/September/2020
+Team Member  Mamta Gupta Date of Joining  03/September/2014 Anniversary Date  03/September/2020
+Team Member  Sumit Kathuriya Date of Joining  03/September/2014 Anniversary Date  03/September/2020
+Team Member  Vijay Gupta Date of Joining  04/September/2017 Anniversary Date  04/September/2020
+Team Member  Anurag Vijaykumar Mudrakol Date of Joining  06/September/2018 Anniversary Date  06/September/2020
+Team Member  Apurva Joshi Date of Joining  11/September/2017 Anniversary Date  11/September/2020
+Team Member  Priyank Shrimal Date of Joining  11/September/2017 Anniversary Date  11/September/2020
+Team Member  Rahul Darekar Date of Joining  11/September/2017 Anniversary Date  11/September/2020
+Team Member  Aditi Singh Chauhan Date of Joining  12/September/2019 Anniversary Date  12/September/2020
+Anniversary-> Aditi Singh Chauhan Date of Joining 12/September/2019 Anniversary Date 12/September/2020
+Team Member  Neha Fernandez Date of Joining  12/September/2019 Anniversary Date  12/September/2020
+Anniversary-> Neha Fernandez Date of Joining 12/September/2019 Anniversary Date 12/September/2020
+Team Member  Neeraj Singh Jadon Date of Joining  13/September/2010 Anniversary Date  13/September/2020
+Anniversary-> Neeraj Singh Jadon Date of Joining 13/September/2010 Anniversary Date 13/September/2020
+Team Member  Brijendra Mishra Date of Joining  14/September/2015 Anniversary Date  14/September/2020
+Anniversary-> Brijendra Mishra Date of Joining 14/September/2015 Anniversary Date 14/September/2020
+Team Member  Mayurkumar Jain Date of Joining  16/September/2019 Anniversary Date  16/September/2020
+Team Member  Rahul Hassija Date of Joining  16/September/2019 Anniversary Date  16/September/2020
+Team Member  Shweta Mithas Date of Joining  16/September/2015 Anniversary Date  16/September/2020
+Team Member  Mratunjay Chauhan Date of Joining  18/September/2017 Anniversary Date  18/September/2020
+Team Member  Sajal Fouzdar Date of Joining  18/September/2017 Anniversary Date  18/September/2020
+Team Member  Shweta Jain Date of Joining  18/September/2017 Anniversary Date  18/September/2020
+Team Member  Aayush Verma Date of Joining  20/September/2018 Anniversary Date  20/September/2020
+Team Member  Sandeep Soni Date of Joining  20/September/2018 Anniversary Date  20/September/2020
+Team Member  Himanshu Verma Date of Joining  21/September/2017 Anniversary Date  21/September/2020
+Team Member  Simran Nagpal Date of Joining  24/September/2018 Anniversary Date  24/September/2020
+Team Member  Kapil Nandgave Date of Joining  25/September/2017 Anniversary Date  25/September/2020
+Team Member  Jhonikhan Magdum Date of Joining  26/September/2019 Anniversary Date  26/September/2020
+Team Member  Prabhakar Patra Date of Joining  26/September/2016 Anniversary Date  26/September/2020
+Team Member  Nishant Parashar Date of Joining  29/September/2017 Anniversary Date  29/September/2020
+Execution End at: 09/11/2020 12:07:19

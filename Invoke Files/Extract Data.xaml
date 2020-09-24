@@ -1,0 +1,1692 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Extract_Data" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DataTableToHtmlTable;assembly=DataTableToHtmlTable" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.microsoft.com/workflow/2012/07/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ExcelSheet" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>5078,15577</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="46">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Security</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="Extract Data" sap:VirtualizedContainerService.HintSize="5088,15512" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="ReadData" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="TeamMember" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="EmailID" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="LeadEmail" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="ManagerEmail" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="DateOfJoining" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Anniversary" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="YearofExpr" />
+      <Variable x:TypeArguments="x:String" Name="JoiningDate" />
+      <Variable x:TypeArguments="x:String" Name="AnniversaryDate" />
+      <Variable x:TypeArguments="x:String" Name="TodaysDate" />
+      <Variable x:TypeArguments="x:String" Name="B1" />
+      <Variable x:TypeArguments="x:String" Name="B2" />
+      <Variable x:TypeArguments="x:String" Name="B3" />
+      <Variable x:TypeArguments="x:String" Name="B4" />
+      <Variable x:TypeArguments="x:String" Name="B5" />
+      <Variable x:TypeArguments="x:String" Name="B6" />
+      <Variable x:TypeArguments="x:String" Name="B7" />
+      <Variable x:TypeArguments="sd:DataTable" Name="EmailDT" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Content" />
+      <Variable x:TypeArguments="x:Int32" Name="CompareDate" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="LeadName" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="ManagerName" />
+      <Variable x:TypeArguments="x:String" Name="Table" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Joining" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="AnniDate" />
+      <Variable x:TypeArguments="x:Int32" Name="Innercount" />
+      <Variable x:TypeArguments="x:String" Name="CheckMonth" />
+      <Variable x:TypeArguments="s:DateTime" Name="StartDate" />
+      <Variable x:TypeArguments="s:DateTime" Name="LastDate" />
+      <Variable x:TypeArguments="x:String" Name="Password" />
+      <Variable x:TypeArguments="x:String" Name="MailTo" />
+      <Variable x:TypeArguments="ss:SecureString" Name="CredPass" />
+      <Variable x:TypeArguments="x:String" Name="Email" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="contentB4" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="contentB5" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="Anninersary_SenderCred" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="5046,22" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CredPass]" Username="[Email]" />
+    <Assign sap:VirtualizedContainerService.HintSize="5046,60" sap2010:WorkflowViewState.IdRef="Assign_78">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Password]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[new System.Net.NetworkCredential(string.Empty, CredPass).Password]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="5046,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[StartDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[New DateTime(Now.Year,Now.Month,1)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="5046,60" sap2010:WorkflowViewState.IdRef="Assign_32">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[LastDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[StartDate.AddMonths(1).AddDays(-1)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:BuildDataTable DataTable="[EmailDT]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="5046,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Team_x0020_Member&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;EmailID&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Lead&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Manager&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateOfJoining&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Anniversary&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Longevity&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BuildDataTable>
+    <ui:KillProcess Process="{x:Null}" ContinueOnError="True" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="5046,22" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="EXCEL" />
+    <If Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Friday&quot;) AND DateTime.Now.AddDays(1).ToString(&quot;MM-dd-yyyy&quot;).Equals(LastDate.ToString(&quot;MM-dd-yyyy&quot;)) OR DateTime.Now.AddDays(2).ToString(&quot;MM-dd-yyyy&quot;).Equals(LastDate.ToString(&quot;MM-dd-yyyy&quot;)) OR DateTime.Now.AddDays(3).ToString(&quot;MM-dd-yyyy&quot;).Equals(LastDate.ToString(&quot;MM-dd-yyyy&quot;))]" sap:VirtualizedContainerService.HintSize="5046,839" sap2010:WorkflowViewState.IdRef="If_10">
+      <If.Then>
+        <Sequence DisplayName="Execute Macro for next month" sap:VirtualizedContainerService.HintSize="476,451" sap2010:WorkflowViewState.IdRef="Sequence_90">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,359" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_10" Visible="False" WorkbookPath="[ExcelSheet]">
+            <ui:ExcelApplicationScope.Body>
+              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExecuteMacro ContinueOnError="{x:Null}" MacroOutput="{x:Null}" DisplayName="Execute Macro" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExecuteMacro_5" MacroName="BothMonths" />
+                  <ui:ExcelReadRange AddHeaders="True" DataTable="[ReadData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_5" SheetName="2019" UseFilter="True">
+                    <ui:ExcelReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ExcelReadRange.Range>
+                  </ui:ExcelReadRange>
+                </Sequence>
+              </ActivityAction>
+            </ui:ExcelApplicationScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExcelApplicationScope>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <If Condition="[DateTime.Now.ToString(&quot;MM-dd-yyyy&quot;).Equals(LastDate.ToString(&quot;MM-dd-yyyy&quot;))]" sap:VirtualizedContainerService.HintSize="1039,691" sap2010:WorkflowViewState.IdRef="If_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="Execute Macro for next month" sap:VirtualizedContainerService.HintSize="476,451" sap2010:WorkflowViewState.IdRef="Sequence_38">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,359" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_8" Visible="False" WorkbookPath="[ExcelSheet]">
+                <ui:ExcelApplicationScope.Body>
+                  <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ExecuteMacro ContinueOnError="{x:Null}" MacroOutput="{x:Null}" DisplayName="Execute Macro" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExecuteMacro_3" MacroName="NextMonth" />
+                      <ui:ExcelReadRange AddHeaders="True" DataTable="[ReadData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="2019" UseFilter="True">
+                        <ui:ExcelReadRange.Range>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                        </ui:ExcelReadRange.Range>
+                      </ui:ExcelReadRange>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ExcelApplicationScope.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ExcelApplicationScope>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="518,543" sap2010:WorkflowViewState.IdRef="Sequence_83">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Execute Macro for current month" sap:VirtualizedContainerService.HintSize="476,451" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,359" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_9" Visible="False" WorkbookPath="[ExcelSheet]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExecuteMacro ContinueOnError="{x:Null}" MacroOutput="{x:Null}" DisplayName="Execute Macro" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExecuteMacro_4" MacroName="CurrentMonth" />
+                        <ui:ExcelReadRange AddHeaders="True" DataTable="[ReadData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" SheetName="2019" UseFilter="True">
+                          <ui:ExcelReadRange.Range>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </ui:ExcelReadRange.Range>
+                        </ui:ExcelReadRange>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExcelApplicationScope>
+              </Sequence>
+            </Sequence>
+          </If.Else>
+        </If>
+      </If.Else>
+    </If>
+    <ui:KillProcess Process="{x:Null}" ContinueOnError="True" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="5046,22" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
+    <While sap:VirtualizedContainerService.HintSize="5046,13956" sap2010:WorkflowViewState.IdRef="While_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <While.Condition>[Innercount &lt; 3]</While.Condition>
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="5000,13798" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch.Try>
+          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ReadData]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="4962,13009" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="4912,12861" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="Weekends" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap:VirtualizedContainerService.HintSize="4870,1680" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,1488" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="TeamMember" DisplayName="Get Team Member Name" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_1" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[TeamMember]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="EmailID" DisplayName="Get Email Id" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_2" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[EmailID]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Lead EmailID" DisplayName="Get Lead Email Id" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_3" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[LeadEmail]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Manager EmailID" DisplayName="Get Manager Email Id" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_4" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[ManagerEmail]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="DateOfJoining" DisplayName="Get Date Of Joining" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_5" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[DateOfJoining]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[Joining]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="ui:GenericValue">[Datetime.Parse(DateOfJoining).ToString("dd/MMMM/yyy")]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[JoiningDate]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[DateTime.Parse(DateOfJoining.ToString).ToString("MM-dd")]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Anniversary" DisplayName="Get Anniversary" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_6" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[Anniversary]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[CheckMonth]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[DateTime.Parse(Anniversary.ToString).ToString("MMM")]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[AnniDate]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="ui:GenericValue">[Datetime.Parse(Anniversary).ToString("dd/MMMM/yyy")]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[AnniversaryDate]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[DateTime.Parse(Anniversary.ToString).ToString("MM-dd")]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Longevity" DisplayName="Get Year Of Exprience" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_7" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[YearofExpr]</OutArgument>
+                        </ui:GetRowItem.Value>
+                      </ui:GetRowItem>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Lead" DisplayName="Get Lead Name" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_8" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[LeadName]</OutArgument>
+                        </ui:GetRowItem.Value>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:GetRowItem>
+                      <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Manager" DisplayName="Get Manager Name" sap:VirtualizedContainerService.HintSize="334,64" sap2010:WorkflowViewState.IdRef="GetRowItem_9" Row="[row]">
+                        <ui:GetRowItem.Value>
+                          <OutArgument x:TypeArguments="ui:GenericValue">[ManagerName]</OutArgument>
+                        </ui:GetRowItem.Value>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:GetRowItem>
+                    </Sequence>
+                    <Assign sap:VirtualizedContainerService.HintSize="376,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[TodaysDate]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[datetime.Now.AddDays(1).ToString("MM-dd")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                  <ui:KillProcess Process="{x:Null}" ContinueOnError="True" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="4870,22" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
+                  <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="4870,946" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" Visible="False" WorkbookPath="[ExcelSheet]">
+                    <ui:ExcelApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="418,837" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Rules" sap:VirtualizedContainerService.HintSize="376,745" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:ExcelReadCell Cell="B1" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_8" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B1]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                            <ui:ExcelReadCell Cell="B2" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_9" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B2]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                            <ui:ExcelReadCell Cell="B3" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_10" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B3]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                            <ui:ExcelReadCell Cell="B4" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_11" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B4]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                            <ui:ExcelReadCell Cell="B5" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_12" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B5]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                            <ui:ExcelReadCell Cell="B6" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_13" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B6]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                            <ui:ExcelReadCell Cell="B7" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_14" SheetName="Rules">
+                              <ui:ExcelReadCell.Result>
+                                <OutArgument x:TypeArguments="x:String">[B7]</OutArgument>
+                              </ui:ExcelReadCell.Result>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelReadCell>
+                          </Sequence>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ExcelApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelApplicationScope>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{TeamMember,EmailID,LeadName,ManagerName,Joining,AnniDate,YearofExpr}]" DataTable="[EmailDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="4870,22" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                  <d:DataTableToHtmlTable CellBGColor="{x:Null}" FontColor="{x:Null}" Border="solid" DataTable="[EmailDT]" DisplayName="Convert Data table to Html" FontSize="12" FontStyle="normal" FontWeight="lighter" Fonts="Arial" HeaderBGColor="[System.Drawing.ColorTranslator.FromHtml(&quot;#66b3ff&quot;)]" sap:VirtualizedContainerService.HintSize="4870,22" sap2010:WorkflowViewState.IdRef="DataTableToHtmlTable_2" Output="[Table]" TextAlign="center" />
+                  <Assign sap:VirtualizedContainerService.HintSize="4870,60" sap2010:WorkflowViewState.IdRef="Assign_77">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Table]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Table.Replace( "width=""100%""","width=""70%""")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="4870,87" sap2010:WorkflowViewState.IdRef="AppendLine_21" Text="[&quot;Team Member &quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining &quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date &quot;+&quot; &quot;+AnniDate]" />
+                  <If Condition="[Datetime.Now.AddDays(2).DayOfWeek.ToString.Equals(&quot;Sunday&quot;) OR Datetime.Now.AddDays(3).DayOfWeek.ToString.Equals(&quot;Monday&quot;)]" sap:VirtualizedContainerService.HintSize="4870,9488" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1792,9340" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <p:CompareDate DisplayName="Compare date" sap:VirtualizedContainerService.HintSize="1754,22" sap2010:WorkflowViewState.IdRef="CompareDate_2" Left="[DateTime.ParseExact(AnniversaryDate, &quot;MM-dd&quot;, CultureInfo.InvariantCulture)]" Result="[Weekends]" Right="[DateTime.ParseExact(Cdate(TodaysDate).AddDays(1).ToString(&quot;MM-dd&quot;), &quot;MM-dd&quot;, CultureInfo.InvariantCulture)]" />
+                        <If Condition="[Now.AddDays(1).ToString(&quot;MM-dd&quot;).Equals(AnniversaryDate)]" sap:VirtualizedContainerService.HintSize="1754,9186" sap2010:WorkflowViewState.IdRef="If_6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr &gt;=1 AND YearofExpr &lt;=3,&quot;Case 1&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr = 4 ,&quot;Case 2&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr =5, &quot;Case 3&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr &gt;=6 AND YearofExpr &lt;=9 ,&quot;Case 4&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr =10 ,&quot;Case 5&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr =10 ,&quot;Case 6&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr &gt;=11  ,&quot;Case 6&quot;,&quot;Default&quot;)))))))]" sap:VirtualizedContainerService.HintSize="216,51" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Sequence x:Key="Case 1" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_22" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B1]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                              <Sequence x:Key="Case 2" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_23" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B2]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                              <Sequence x:Key="Case 3" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_24" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B3]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_61">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String" xml:space="preserve">rajagopalan.kannan@infobeans.com </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_62">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" Value="" />
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                              <Sequence x:Key="Case 4" sap:VirtualizedContainerService.HintSize="739,843" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="701,87" sap2010:WorkflowViewState.IdRef="AppendLine_25" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="701,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[contentB4]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B4]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[contentB5]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B5]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <If Condition="[LeadName.Equals(ManagerName)]" sap:VirtualizedContainerService.HintSize="701,293" sap2010:WorkflowViewState.IdRef="If_5">
+                                  <If.Then>
+                                    <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;,&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="sameer.pradhan@infobeans.com" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_9" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                      <ui:SendMail.Files>
+                                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                      </ui:SendMail.Files>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:SendMail>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;,&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="[ManagerEmail+&quot;;sameer.pradhan@infobeans.com&quot;]" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_10" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                      <ui:SendMail.Files>
+                                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                      </ui:SendMail.Files>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:SendMail>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                              <Sequence x:Key="Case 5" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_26" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B6]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_63">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String" xml:space="preserve">rajagopalan.kannan@infobeans.com </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_64">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" Value="" />
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                              <Sequence x:Key="Case 6" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_27" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:GenericValue">["● "+B7]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </Switch>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="1497,9038" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Int32" Name="WeekofDayMonday" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <p:CompareDate DisplayName="Compare date" sap:VirtualizedContainerService.HintSize="1459,22" sap2010:WorkflowViewState.IdRef="CompareDate_3" Left="[DateTime.ParseExact(AnniversaryDate, &quot;MM-dd&quot;, CultureInfo.InvariantCulture)]" Result="[WeekofDayMonday]" Right="[DateTime.ParseExact(Cdate(TodaysDate).AddDays(2).ToString(&quot;MM-dd&quot;), &quot;MM-dd&quot;, CultureInfo.InvariantCulture)]" />
+                              <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[If (Weekends.ToString.Equals(&quot;0&quot;),&quot;Case 0&quot;, If (WeekofDayMonday.ToString.Equals(&quot;0&quot;),&quot;Case 1&quot;, &quot;Default&quot;))]" sap:VirtualizedContainerService.HintSize="1459,8884" sap2010:WorkflowViewState.IdRef="Switch`1_11">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Switch x:TypeArguments="x:String" x:Key="Case 0" DisplayName="Switch" Expression="[If (YearofExpr &gt;=1 AND YearofExpr &lt;=3,&quot;Case 1&quot;,If ( YearofExpr = 4 ,&quot;Case 2&quot;,If (YearofExpr =5, &quot;Case 3&quot;,If (YearofExpr &gt;=6 AND YearofExpr &lt;=9 ,&quot;Case 4&quot;,If (YearofExpr =10 ,&quot;Case 5&quot;,If (YearofExpr =10 ,&quot;Case 6&quot;,If (YearofExpr &gt;=11  ,&quot;Case 6&quot;,&quot;Default&quot;)))))))]" sap:VirtualizedContainerService.HintSize="1423,4556" sap2010:WorkflowViewState.IdRef="Switch`1_9">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Sequence x:Key="Case 1" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_34" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_47">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B1]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 2" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_35" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_48">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B2]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 3" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_36" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_49">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B3]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_65">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">rajagopalan.kannan@infobeans.com </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_66">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 4" sap:VirtualizedContainerService.HintSize="739,843" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="701,87" sap2010:WorkflowViewState.IdRef="AppendLine_37" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="701,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_50">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[contentB4]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B4]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_51">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[contentB5]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B5]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <If Condition="[LeadName.Equals(ManagerName)]" sap:VirtualizedContainerService.HintSize="701,293" sap2010:WorkflowViewState.IdRef="If_8">
+                                      <If.Then>
+                                        <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;,&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="sameer.pradhan@infobeans.com" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_13" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                          <ui:SendMail.Files>
+                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                          </ui:SendMail.Files>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:SendMail>
+                                      </If.Then>
+                                      <If.Else>
+                                        <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="[ManagerEmail+&quot;;sameer.pradhan@infobeans.com&quot;]" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_14" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                          <ui:SendMail.Files>
+                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                          </ui:SendMail.Files>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:SendMail>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 5" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_38" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_52">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B6]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_67">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">rajagopalan.kannan@infobeans.com </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_68">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 6" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_39" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_53">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B7]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </Sequence>
+                                </Switch>
+                                <Switch x:TypeArguments="x:String" x:Key="Case 1" DisplayName="Switch" Expression="[If (YearofExpr &gt;=1 AND YearofExpr &lt;=3,&quot;Case 1&quot;,If ( YearofExpr = 4 ,&quot;Case 2&quot;,If (YearofExpr =5, &quot;Case 3&quot;,If (YearofExpr &gt;=6 AND YearofExpr &lt;=9 ,&quot;Case 4&quot;,If (YearofExpr =10 ,&quot;Case 5&quot;,If (YearofExpr =10 ,&quot;Case 6&quot;,If (YearofExpr &gt;=11  ,&quot;Case 6&quot;,&quot;Default&quot;)))))))]" sap:VirtualizedContainerService.HintSize="1423,3972" sap2010:WorkflowViewState.IdRef="Switch`1_10">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Sequence x:Key="Case 1" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_40" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_54">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B1]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 2" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_41" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_55">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B2]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 3" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_42" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_56">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B3]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_69">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">rajagopalan.kannan@infobeans.com </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_70">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 4" sap:VirtualizedContainerService.HintSize="739,843" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="701,87" sap2010:WorkflowViewState.IdRef="AppendLine_43" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="701,91" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_57">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[contentB4]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B4]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_58">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[contentB5]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B5]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <If Condition="[LeadName.Equals(ManagerName)]" sap:VirtualizedContainerService.HintSize="701,293" sap2010:WorkflowViewState.IdRef="If_9">
+                                      <If.Then>
+                                        <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;,&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="sameer.pradhan@infobeans.com" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_15" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                          <ui:SendMail.Files>
+                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                          </ui:SendMail.Files>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:SendMail>
+                                      </If.Then>
+                                      <If.Else>
+                                        <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="[ManagerEmail+&quot;;sameer.pradhan@infobeans.com&quot;]" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_16" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                          <ui:SendMail.Files>
+                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                          </ui:SendMail.Files>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:SendMail>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 5" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_44" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_59">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B6]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_71">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">rajagopalan.kannan@infobeans.com </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_72">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                  <Sequence x:Key="Case 6" sap:VirtualizedContainerService.HintSize="336,569" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="AppendLine_45" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_60">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="ui:GenericValue">["● "+B7]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_31" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </Sequence>
+                                </Switch>
+                              </Switch>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="3033,4774" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <p:CompareDate DisplayName="Compare date" sap:VirtualizedContainerService.HintSize="2995,22" sap2010:WorkflowViewState.IdRef="CompareDate_1" Left="[DateTime.ParseExact(AnniversaryDate, &quot;MM-dd&quot;, CultureInfo.InvariantCulture)]" Result="[CompareDate]" Right="[DateTime.ParseExact(Cdate(TodaysDate).ToString(&quot;MM-dd&quot;), &quot;MM-dd&quot;, CultureInfo.InvariantCulture)]" />
+                        <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr &gt;=1 AND YearofExpr &lt;=3,&quot;Case 1&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr = 4 ,&quot;Case 2&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr =5, &quot;Case 3&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr &gt;=6 AND YearofExpr &lt;=9 ,&quot;Case 4&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr =10 ,&quot;Case 5&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr =10 ,&quot;Case 6&quot;,If (CompareDate.ToString.Contains(&quot;0&quot;) AND YearofExpr &gt;=11  ,&quot;Case 6&quot;,&quot;Default&quot;)))))))]" sap:VirtualizedContainerService.HintSize="2995,4620" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence x:Key="Case 1" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B1]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                          <Sequence x:Key="Case 2" sap:VirtualizedContainerService.HintSize="368,537" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_3" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B2]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                          <Sequence x:Key="Case 3" sap:VirtualizedContainerService.HintSize="368,737" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_4" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B3]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_73">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">rajagopalan.kannan@infobeans.com</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                            <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_74">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">
+                                  <Literal x:TypeArguments="x:String" Value="" />
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                          <Sequence x:Key="Case 4" sap:VirtualizedContainerService.HintSize="739,843" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="ui:GenericValue" Name="contentB4" />
+                              <Variable x:TypeArguments="ui:GenericValue" Name="contentB5" />
+                            </Sequence.Variables>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="701,87" sap2010:WorkflowViewState.IdRef="AppendLine_5" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="701,91" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[contentB4]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B4]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="701,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[contentB5]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B5]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <If Condition="[LeadName.Equals(ManagerName)]" sap:VirtualizedContainerService.HintSize="701,293" sap2010:WorkflowViewState.IdRef="If_3">
+                              <If.Then>
+                                <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;,&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="sameer.pradhan@infobeans.com" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_7" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                  <ui:SendMail.Files>
+                                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                  </ui:SendMail.Files>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:SendMail>
+                              </If.Then>
+                              <If.Else>
+                                <ui:SendMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;&lt;html&gt;&lt;p&gt;Hi &quot; +LeadName+&quot;,&lt;/p&gt;&lt;p&gt;This is a reminder to send anniversary note to your team member&lt;/p&gt;&quot;+Table+&quot;&lt;p&gt;&quot;+contentB4+&quot;&lt;/p&gt;&lt;p&gt;&quot;+contentB5+&quot;&lt;/p&gt;&lt;p&gt;Please don't forget to copy me and Kannan on this anniversary note.&lt;/p&gt;&lt;p&gt;&lt;font color=red&gt;Note: This is an automated email. If you should not receive this, please let me know.&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;&quot;]" Cc="[ManagerEmail+&quot;;sameer.pradhan@infobeans.com&quot;]" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="330,145" sap2010:WorkflowViewState.IdRef="SendMail_4" IsBodyHtml="True" Password="[Password]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Anniversary Note Reminder – &quot; +TeamMember]" To="[LeadEmail]">
+                                  <ui:SendMail.Files>
+                                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                  </ui:SendMail.Files>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:SendMail>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                          <Sequence x:Key="Case 5" sap:VirtualizedContainerService.HintSize="336,769" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="AppendLine_6" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B6]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_75">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">rajagopalan.kannan@infobeans.com</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                            <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_76">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[MailTo]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">
+                                  <Literal x:TypeArguments="x:String" Value="" />
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                          <Sequence x:Key="Case 6" sap:VirtualizedContainerService.HintSize="336,569" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AppendLine DisplayName="Append Line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="AppendLine_7" Text="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[&quot;Anniversary-&gt;&quot;+&quot; &quot;+TeamMember +&quot; &quot;+&quot;Date of Joining&quot;+&quot; &quot;+Joining +&quot; &quot;+&quot;Anniversary Date&quot;+&quot; &quot;+AnniDate]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[Content]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["● "+B7]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Email workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Invoke Files\Email.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadEmail">[LeadEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="TeamMember">[TeamMember]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Email">[Email]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="LeadName">[LeadName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerName">[ManagerName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Table">[Table]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Content">[Content]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="ManagerEmail">[ManagerEmail]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="MailTo">[MailTo]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                        </Switch>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <ui:ClearDataTable DataTable="[EmailDT]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="4866,22" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+                  <Assign sap:VirtualizedContainerService.HintSize="4866,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Innercount]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">3</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEachRow>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="4954,479" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap:VirtualizedContainerService.HintSize="368,410" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:AppendLine DisplayName="Append line" FileName="Logs.txt" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="AppendLine_8" Text="[&quot;Inner counter-&gt;&quot;+Innercount.ToString+&quot;: &quot;+DateTime.Now.ToString +&quot;, Exception: &quot;+exception.Message+&quot;, Source: &quot;+exception.Source]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:AppendLine>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,91" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Info" Message="[&quot;Inner counter-&gt;&quot;+Innercount.ToString+&quot;: &quot;+DateTime.Now.ToString +&quot;, Exception: &quot;+exception.Message+&quot;, Source: &quot;+exception.Source]" />
+                <Assign sap:VirtualizedContainerService.HintSize="330,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[Innercount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[Innercount+1]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </While>
+  </Sequence>
+</Activity>

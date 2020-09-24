@@ -1,0 +1,45 @@
+{
+  "name": "Anniversary RPA_Active",
+  "description": "Blank Process",
+  "main": "Main.xaml",
+  "dependencies": {
+    "Excel_Addon_OLEDB.Activities": "1.0.3",
+    "Microsoft.Activities": "1.0.1",
+    "UiPath.Excel.Activities": "[2.5.3]",
+    "UiPath.Mail.Activities": "[1.5.0]",
+    "UiPath.System.Activities": "[19.3.0]",
+    "UiPath.UIAutomation.Activities": "[19.3.0]",
+    "UiPathTeam.HTMLActivities": "2.0.0",
+    "UiPathTeam.Subtitle.Activities": "1.0.0",
+    "VVaidya.DatatableToHTML.Activities": "2.1.0"
+  },
+  "webServices": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "19.7.0.58",
+  "projectVersion": "1.0.23",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "fileInfoCollection": []
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic"
+}

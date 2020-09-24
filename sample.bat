@@ -1,0 +1,1 @@
+start "" /min "C:\Users\Farhan.Khan\AppData\Local\UiPath\app-19.5.0-beta0024\UiRobot.exe" /file:"C:\Users\Farhan.Khan\Documents\UiPath\Anniversary RPA_Active\Main.xaml" /input:"{‘StartedByTaskScheduler’:true}"
